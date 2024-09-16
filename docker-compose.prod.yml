@@ -7,7 +7,7 @@ services:
         dockerfile: Dockerfile.prod
       command: gunicorn space.wsgi:application --bind 0.0.0.0:8000
       volumes:
-        - static_volume:/home/app/astro_backend/staticfiles  
+        - static_volume:/home/app/backend/staticfiles  
       expose:
         - 8000
       env_file:
@@ -33,7 +33,7 @@ services:
     nginx:
       build: ./nginx
       volumes:
-      - static_volume:/home/app/astro_backend/staticfiles 
+      - static_volume:/home/app/backend/staticfiles 
       ports:
         - 1337:80
       depends_on:
