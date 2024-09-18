@@ -37,9 +37,24 @@ services:
       ports:
         - 1337:80
       depends_on:
-        - astro_backend  
+        - astro_backend 
+        - astro_frontend 
       networks:
       - astro_network   
+
+    astro_frontend:
+      build: 
+        context: ./frontend/astro_frontend 
+        dockerfile: Dockerfile
+      volumes:
+        - /frontend/astro_frontend/node_modules  
+      stdin_open: true
+      environment:
+        - CHOKIDAR_USEPOLLING=true
+      ports:
+        - 3000:3000
+      networks:
+        - astro_network      
       
 
 
